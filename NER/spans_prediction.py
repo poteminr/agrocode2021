@@ -2,6 +2,7 @@ import re
 from span_words import span_words
 from transformers import AutoModelForTokenClassification, AutoTokenizer, pipeline
 
+
 class NER:
     def __init__(self, path_to_model, path_to_tokenizer, device=0):
         self.path_to_model = path_to_model
@@ -14,7 +15,7 @@ class NER:
         self.hugginface_pipeline = pipeline(model=self.model, tokenizer=self.tokenizer, task='ner', 
                                             aggregation_strategy='average', device=self.device)
 
-                                            
+
     def predict_spans_baseline(self, text, span_length_threshold=3):
         # Just finds words from span_words in the given string
         spans = []
