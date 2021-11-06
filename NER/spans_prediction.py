@@ -16,22 +16,26 @@ class NER:
                                             aggregation_strategy='average', device=self.device)
 
 
-    def predict_spans_baseline(self, text, span_length_threshold=3):
+    def predict_spans_baseline(self, text, span_length_threshold=2):
         # Just finds words from span_words in the given string
         spans = []
         for word in span_words:
             if len(word) > span_length_threshold:
-                for match in re.finditer(word, text):
+                for match in re.finditer(word, text.lower()):
                     spans.append([match.span()[0], match.span()[1]])
                 
         return spans
 
 
-    def predict_spans(self, text):
+    def predict_spans(self, text, baseline_for_empty=True, text_to_lowercase=True):
         spans = []
+
+        if text_to_lowercase:
+            text = text.lower()
+
         prediction = self.hugginface_pipeline(text)
 
-        if len(spans) == 0:
+        if (len(prediction) == 0) and (baseline_for_empty):
             spans = self.predict_spans_baseline(text)
 
         else:
