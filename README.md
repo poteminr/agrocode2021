@@ -53,7 +53,8 @@ span – индексы начала и конца размеченных при
     ```
 ### MultiLabel Classification
 
-* Как модель также использую cointegrated/rubert-tiny2 от @avidale. 
+* Как модель также использую cointegrated/rubert-tiny2 от [@avidale](https://github.com/avidale)
+
 
 
 
