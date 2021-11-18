@@ -82,7 +82,7 @@ span – индексы начала и конца размеченных при
 
 * **Небольшая фишка с log-loss score**:
 
-    <img src="https://www.machinelearningmastery.ru/img/4203462722.png" alt="drawing" width="300"/>
+    <img src="https://www.machinelearningmastery.ru/img/4203462722.png" alt="drawing" width="400"/>
 
     Из-за особенностей метрики, если значения меньше, например, 0.01, то мы их оставляем равными 0.01, аналогично, если больше 0.94.
     ```python
