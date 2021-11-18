@@ -30,10 +30,15 @@ class NER:
     def predict_spans(self, text, baseline_for_empty=True, text_to_lowercase=True):
         spans = []
 
-        if text_to_lowercase:
-            text = text.lower()
+        # if text_to_lowercase:
+        #     text = text.lower()
 
         prediction = self.hugginface_pipeline(text)
+
+        if len(prediction) == 0 and (text_to_lowercase):
+            text = text.lower()
+            prediction = self.hugginface_pipeline(text)
+
 
         if (len(prediction) == 0) and (baseline_for_empty):
             spans = self.predict_spans_baseline(text)
@@ -42,4 +47,4 @@ class NER:
             for entity in prediction:
                 spans.append([entity['start'], entity['end']])
         
-        return spans
+        return spans, prediction
